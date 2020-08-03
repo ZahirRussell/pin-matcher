@@ -12,13 +12,13 @@
         <div class="row">
             <div class="col-md-6">
                 <div class="pin-generator half-width">
-                    <input class="form-control" type="text">
-                    <button class="generate-btn">Generate Pin</button>
+                    <input id="txtRandomNumber" class="form-control" type="text">
+                    <button onclick="generatePin()" class="generate-btn">Generate Pin</button>
                 </div>
             </div>
             <div class="col-md-6">
                 <div class="input-section half-width">
-                    <input class="form-control" type="text">
+                    <input id="txtInputField" class="form-control" type="text">
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
@@ -42,7 +42,7 @@
                                 <div class="button">C</div>
                             </div>
                             <div>
-                                <button type="submit" class="submit-btn">Submit</button>
+                                <button id="btnSubmit" type="submit" class="submit-btn">Submit</button>
                                 <p class="action-left">3 try left</p>
                             </div>
                     </div>
@@ -50,13 +50,29 @@
             </div>
         </div>
         <div class="notify-section">
-            <p class="notify">❌ Pin Didn't Match, Please try again</p>
-            <p class="notify">✅ Pin Matched... Secret door is opening for you</p>
+            <p id="notMatchNotification" class="notify">❌ Pin Didn't Match, Please try again</p>
+            <p id="matchNotification" class="notify">✅ Pin Matched... Secret door is opening for you</p>
         </div>
     </div>
 
 
 <script>
+    // global variable declaration
+
+    let randomNumberTextBox = document.getElementById('txtRandomNumber');
+    let inputedValue = document.getElementById('txtInputField');
+    let submitButton = document.getElementById('btnSubmit');
+    let matchResult = document.getElementById('match');
+    let notMatchNotification = document.getElementById('notMatchNotification');
+
+
+    // Random Pin Generator
+
+    function generatePin(){   
+        let randomNumber = Math.floor(1000 + Math.random()*9000);
+        randomNumberTextBox.value = randomNumber;
+    }
+
 </script>
 
 </body>
