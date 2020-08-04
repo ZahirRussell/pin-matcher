@@ -22,23 +22,23 @@
                     <div class="numbers">
                         <div class="calc-body">
                             <div class="calc-button-row">
-                                <div onclick="displayNumber('7')" class="button">7</div>
-                                <div onclick="displayNumber('8')" class="button">8</div>
-                                <div onclick="displayNumber('9')" class="button">9</div>
+                                <div onclick="appendNumber('7')" class="button">7</div>
+                                <div onclick="appendNumber('8')" class="button">8</div>
+                                <div onclick="appendNumber('9')" class="button">9</div>
                             </div>
                             <div class="calc-button-row">
-                                <div onclick="displayNumber('4')" class="button">4</div>
-                                <div onclick="displayNumber('5')" class="button">5</div>
-                                <div onclick="displayNumber('6')" class="button">6</div>
+                                <div onclick="appendNumber('4')" class="button">4</div>
+                                <div onclick="appendNumber('5')" class="button">5</div>
+                                <div onclick="appendNumber('6')" class="button">6</div>
                             </div>
                             <div class="calc-button-row">
-                                <div onclick="displayNumber('1')" class="button">1</div>
-                                <div onclick="displayNumber('2')" class="button">2</div>
-                                <div onclick="displayNumber('3')" class="button">3</div>
+                                <div onclick="appendNumber('1')" class="button">1</div>
+                                <div onclick="appendNumber('2')" class="button">2</div>
+                                <div onclick="appendNumber('3')" class="button">3</div>
                             </div>
                             <div class="calc-button-row">
                                 <div onclick="clearSingleValue()" class="button"><</div>
-                                <div onclick="displayNumber('0')" class="button">0</div>
+                                <div onclick="appendNumber('0')" class="button">0</div>
                                 <div onclick="clearAllValue()" class="button">C</div>
                             </div>
                             <div>
@@ -55,88 +55,6 @@
         </div>
     </div>
 
-
-<script>
-    // global variable declaration
-
-    let randomNumberTextBox = document.getElementById('txtRandomNumber');
-    let inputedValue = document.getElementById('txtInputField');
-    let submitButton = document.getElementById('btnSubmit');
-    let matchNotification = document.getElementById('matchNotification');
-    let notMatchNotification = document.getElementById('notMatchNotification');
-    let tryLeft = document.getElementById('numOfTry');
-    let totalTry = 3;
-
-    // Random Pin Generator
-
-    function generatePin(){   
-        let randomNumber = Math.floor(1000 + Math.random()*9000);
-        randomNumberTextBox.value = randomNumber;
-    }
-
-    // Display user input
-
-    function displayNumber(num){
-        inputedValue.value += num;
-    }
-
-    // Varify User Input
-    submitButton.addEventListener('click', function(){
-        let randomNumber = randomNumberTextBox.value;
-        let inputNumber = inputedValue.value;
-
-        // Check Invalid Input
-        if(inputNumber.length != 4 || isNaN(inputNumber) || inputNumber < 0){
-            alert("Please Enter Four Digit Positive Number Pin");
-        }
-      
-        else{
-
-            // Check Match Input
-            if( randomNumber == inputNumber){
-                              
-                matchNotification.style.display = 'block';
-                matchNotification.style.backgroundColor ='green'
-                matchNotification.style.color ='#fff'
-                notMatchNotification.style.display = 'none';
-                inputedValue.value = '';
-                randomNumberTextBox.value = '';
-            }
-            // For Not Match Input
-            else{
-                notMatchNotification.style.display = 'block';
-                notMatchNotification.style.backgroundColor ='red'
-                notMatchNotification.style.color ='#fff'
-                matchNotification.style.display = 'none';
-                inputedValue.value = '';              
-
-                totalTry--;
-                tryLeft.innerText = totalTry;
-
-                if (totalTry == 0) {
-                    submitButton.disabled = true;
-                    submitButton.style.backgroundColor = '#4f6146';
-                }
-            }
-        }
-
-    })
-
-    // Clear all digit
-    function clearAllValue(){
-        inputedValue.value = '';
-    }
-
-    // Clear single digit
-    function clearSingleValue(){
-        let userInput = inputedValue;
-        let backspaceValue = userInput.value;
-        if(backspaceValue >= 0){
-            backspaceValue = backspaceValue.substr(0, backspaceValue.length-1);
-            userInput.value = backspaceValue;
-        }
-    }
-</script>
-
+    <script src="script.js"></script>
 </body>
 </html>
